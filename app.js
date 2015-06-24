@@ -12,8 +12,6 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 //var orders = require('./routes/orders');
 
-var passport = require('./config/passport');
-
 var app = express();
 
 // view engine setup
@@ -33,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: 'my_secret_key_to_decrypt_session_cookies'}));
 
 // Inicializamos la sesion de Passport y lo conectamos con la sesion de Express
+var passport = require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
 

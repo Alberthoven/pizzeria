@@ -7,12 +7,13 @@ var http = require('http');
 var mongoose = require('mongoose');
 
 // Conectamos a la BD
-mongoose.connect('mongodb://localhost/pizzeriadb');
+var db = 'mongodb://localhost/pizzeriadb';
+mongoose.connect(db);
 mongoose.connection.on('open', function(err) {
 	if (err) {
 		debug("No se ha podido conectar a la BD");
 	} else {
-		debug("Conectado a mongodb");
+		debug("Conectado a " + db);
 	}
 })
 
