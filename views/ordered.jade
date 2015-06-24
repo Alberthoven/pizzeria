@@ -1,0 +1,20 @@
+extends layout
+
+block head
+	- var active = 'order'
+
+block content
+	.container
+		.starter-template
+			h1 Gracias por realizar su pedido
+			h5 ID pedido: #{order._id}
+			h5 Usuario: #{order.customer.username}
+			h5 Hora de pedido: #{order.order_date}
+			h5 Pizza: #{order.pizza}
+			h4 Estado del pedido: #{order.state}
+			h5 Notificación por email: 
+				if order.email_on_ready
+					| Sí
+				else
+					| No
+	// /.container

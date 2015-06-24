@@ -1,0 +1,21 @@
+extends layout
+
+block head
+	- var active = 'login'
+
+block content
+	h1 Inicia sesión
+	form(method='post', action='/user/auth')
+		.form-group
+			label(for='inputUser') Usuario
+			input#inputUser.form-control(type="text", placeholder="Introduzca su usuario", name="user")
+		
+		.form-group
+			label(for='inputPassword') Contrase&ntilde;a
+			input#inputPassword.form-control(type="password", placeholder="********", name="password")
+
+		| ¿No tienes una cuenta? Reg&iacute;strate 
+		a(href='/user/register') aqu&iacute;.
+		br
+		
+		button.btn.btn-lg.btn-default(type="submit") Iniciar sesión

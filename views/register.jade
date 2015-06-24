@@ -1,0 +1,31 @@
+extends layout
+
+block head
+	- var active = 'login'
+
+block content
+	h1 Crea tu cuenta
+	form(method='post', action='/user/register')
+		.form-group
+			label(for='inputUser') Usuario
+			input#inputUser.form-control(type="text", placeholder="Introduzca su usuario", name="username")
+		
+		.form-group
+			label(for='inputPassword') Contrase&ntilde;a
+			input#inputPassword.form-control(type="password", placeholder="********", name="password")
+
+		.form-group
+			label(for='inputPassword2') Repite la contrase&ntilde;a
+			input#inputPassword2.form-control(type="password", name="password2")
+
+		.form-group
+			label(for='inputEmail') Email
+			input#inputEmail.form-control(type="email", name="email")
+
+		br
+		if validationErrors
+			ul
+				each error in validationErrors
+					li #{error}
+
+		button.btn.btn-lg.btn-default(type="submit") Crear cuenta

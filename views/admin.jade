@@ -1,0 +1,34 @@
+extends layout
+
+block head
+	- var active = 'admin'
+
+block content
+	h1 Administrar pedidos
+
+	.row
+		.col.lg-12
+			table.table
+				thead
+					tr
+						th Usuario
+						th Fecha
+						th Estado del pedido
+						th Pizza
+						th Aviso por email
+						th Cambiar estado del pedido
+
+				tbody
+					each order in orders
+						tr
+							td #{order.customer.username}
+							td #{order.order_date}
+							td #{order.state}
+							td #{order.pizza}
+							td #{order.email_on_ready}
+							td 
+								a(href='/admin/order/#{order._id}/pending') Pending
+								br
+								a(href='/admin/order/#{order._id}/cooking') Cooking
+								br
+								a(href='/admin/order/#{order._id}/ready') Ready
