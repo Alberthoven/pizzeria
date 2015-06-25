@@ -37,19 +37,25 @@ router.get('/', function(req, res, next) {
 router.get('/order/:order/:state', function(req, res, next) {
 	Order.update({_id: req.params.order}, {"$set": {state: req.params.state}})
 		.exec(function(err, updated) {
-			if (err) throw err;
+			if (err) {
+				throw err;
+			}
 			if (req.params.state == "ready") {
 				// Enviamos mail
 				Order.findOne({_id: req.params.order})
 					.populate('customer')
 					.exec(function(err, info) {
-						if (err) throw err;
+						if (err) {
+							throw err;
+						}
 						if (order.email_on_ready) {
 							//mailOptions.to = "mail@gmail.com";
 							mailOptions.to = order.customer.email;
 							mailOptions.text = "Hola " + order.customer.username + " su pedido está listo. Puede pasar a recogerlo cuando quiera.";
 							transporter.sendMail(mailOptions, function(err, info) {
-								if (err) throw err;
+								if (err) {
+									throw err;
+								}
 								console.log("Info email:", info);
 							});
 						} else {
